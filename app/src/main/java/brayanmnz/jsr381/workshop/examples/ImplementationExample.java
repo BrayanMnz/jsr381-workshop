@@ -1,7 +1,6 @@
 package brayanmnz.jsr381.workshop.examples;
 
 import javax.visrec.spi.ServiceProvider;
-import javax.visrec.spi.ServiceRegistry;
 
 public class ImplementationExample {
 
