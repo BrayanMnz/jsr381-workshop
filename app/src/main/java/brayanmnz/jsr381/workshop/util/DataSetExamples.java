@@ -154,7 +154,7 @@ public class DataSetExamples {
         if (!trainingLabelsFile.exists())
             throw new FileNotFoundException(trainingLabelsFile + " not properly downloaded");
 
-        URL archUrl = DataSetExamples.class.getClassLoader().getResource("mnist1.json");
+        URL archUrl = DataSetExamples.class.getClassLoader().getResource("mnist_arch.json");
         if (archUrl == null)
             throw new FileNotFoundException("Architecture file not found");
         File architectureFile = new File(archUrl.getFile());
