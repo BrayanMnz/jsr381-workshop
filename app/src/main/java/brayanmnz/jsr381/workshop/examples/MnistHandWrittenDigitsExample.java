@@ -17,13 +17,30 @@ public class MnistHandWrittenDigitsExample {
 
     public static void main(String[] args) throws IOException, ModelCreationException {
 
+
+        ImageClassifier<BufferedImage> classifier = createAndTrainMnistHandWrittenDigits();
+
+        // Testing the test image against the classifier.
+        URL input = MnistHandWrittenDigitsExample.class.getClassLoader().getResource("app/src/main/resources/00060.png");
+        if (input == null) {
+            throw new IOException("Input file not found in resources");
+        }
+
+        BufferedImage image = ImageIO.read(new File(input.getFile()));
+        Map<String, Float> results = classifier.classify(image);
+
+        // Print the outcome
+        System.out.println(results);
+    }
+
+    public static ImageClassifier<BufferedImage> createAndTrainMnistHandWrittenDigits() throws IOException, ModelCreationException {
         // Download the dataset and calculate how much time it took
         long start = System.currentTimeMillis();
         DataSetExamples.ExampleDataSet dataSet = DataSetExamples.getMnistDataSet();
         System.out.printf("Took %d milliseconds to download and/or unzip the MNIST dataset%n", System.currentTimeMillis() - start);
 
         // Configuration to train the model
-        ImageClassifier<BufferedImage> classifier = NeuralNetImageClassifier.builder()
+        return NeuralNetImageClassifier.builder()
                 .inputClass(BufferedImage.class)
                 .imageHeight(28)
                 .imageWidth(28)
@@ -35,17 +52,5 @@ public class MnistHandWrittenDigitsExample {
                 .maxEpochs(3)
                 .learningRate(0.01f)
                 .build();
-
-        // Testing the test image against the classifier.
-        URL input = MnistHandWrittenDigitsExample.class.getClassLoader().getResource("00060.png");
-        if (input == null) {
-            throw new IOException("Input file not found in resources");
-        }
-
-        BufferedImage image = ImageIO.read(new File(input.getFile()));
-        Map<String, Float> results = classifier.classify(image);
-
-        // Print the outcome
-        System.out.println(results);
     }
 }

@@ -10,11 +10,7 @@ import java.nio.file.Paths;
 import java.util.Map;
 import javax.visrec.ml.model.ModelCreationException;
 
-/**
- * Hand written digit recognition using MNIST data set - image classification hello world.
- *
- * @author Zoran Sevarac <zoran.sevarac@deepnetts.com>
- */
+
 public class Duke {
 
     public static void main(String[] args) throws IOException, ModelCreationException {
@@ -37,5 +33,15 @@ public class Duke {
         BufferedImage image = ImageIO.read(new File("app/datasets/duke_and_nonduke/duke/duke1.jpg"));
         Map<String, Float> results = classifier.classify(image);
         System.out.println(results);
+
+        // recognize image with a train model
+        BufferedImage image1 = ImageIO.read(new File("app/src/main/resources/duke.jpg"));
+        Map<String, Float> results1 = classifier.classify(image1);
+        System.out.println(results1);
+
+        // recognize image with a train model
+        BufferedImage image2 = ImageIO.read(new File("app/src/main/resources/duke_1.jpg"));
+        Map<String, Float> results2 = classifier.classify(image2);
+        System.out.println(results2);
     }
 }
