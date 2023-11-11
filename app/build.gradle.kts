@@ -29,12 +29,12 @@ dependencies {
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
 }
 
 application {
     // Define the main class for the application.
     //mainClass.set("brayanmnz.jsr381.workshop.App")
-    mainClass.set("brayanmnz.jsr381.workshop.examples.ImplementationExample")
+    mainClass.set("brayanmnz.jsr381.workshop.examples.UseTrainedModel")
 }
